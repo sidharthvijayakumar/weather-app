@@ -28,6 +28,7 @@ Create a `requirements.txt` file with the following:
 ```txt
 Flask
 requests
+logging
 gunicorn
 ```
 Then install dependencies:
