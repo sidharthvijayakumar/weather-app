@@ -1,10 +1,12 @@
 FROM python:3.13-alpine as builder
 WORKDIR /app
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
 
 FROM python:3.13-alpine as runtime
-COPY --from=builder /app /app
+COPY --from=builder /install /usr/local
+RUN pip install gunicorn
 WORKDIR /app
+COPY . .
 EXPOSE 5000
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]

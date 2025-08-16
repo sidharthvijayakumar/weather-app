@@ -4,11 +4,11 @@ import logging
 from requests.exceptions import ConnectTimeout, HTTPError
 
 # Logger setup
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO,format="%(asctime)s;%(levelname)s;%(funcName)s;%(message)s")
 logger = logging.getLogger(__name__)
 
 # Config
-API_KEY = ""  # Replace with your actual API key
+API_KEY = ""#Add your API key
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 app = Flask(__name__)
@@ -56,4 +56,4 @@ def get_weather(city):
     return response.json()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000,debug=True)

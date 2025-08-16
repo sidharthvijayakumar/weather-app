@@ -163,7 +163,7 @@ docker build -t weather-app:v1 . --no-cache
 Once the image is build to run the image use 
 Use the below command to build the image:
 ```
- docker run -itd -p 5000:5000 weather-app:v1
+docker run -itd -p 5000:5000 weather-app:v1
 ```
 
 ---
