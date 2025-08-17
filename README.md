@@ -178,6 +178,14 @@ To upgrade the helm chart  use
 ```
 helm upgrade weather python-api
 ```
+To create image pull secret for kubernetes deployment(docker.io) use the below command
+```
+kubectl create secret docker-registry docker-io-secret --docker-server=https://index.docker.io/v1/ --docker-username=<docker-username> --docker-password=<docker-io-PAT> --docker-email=<email-id>
+```
+To create image pull secret for kubernetes deployment(ecr) use the below command
+```
+kubectl create secret docker-registry ecr-secret --docker-server=<account-id>.dkr.ecr.ap-south-1.amazonaws.com --docker-username=AWS --docker-password=$(aws ecr get-login-password --region <region>)
+```
 
 Feel free to contribute or provide feedback! 😊
 
