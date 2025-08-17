@@ -139,11 +139,11 @@ Inside a `templates/` folder, create an `index.html` file:
 4. **Transfer project files using SCP or Git.**
 5. **Run Flask in the background:**
    ```sh
-   nohup python3 app.py --host=0.0.0.0 --port=5000 &
+   nohup python3 app.py --host=0.0.0.0 --port=80 &
    ```
 
 ### 6. Access the Application
-Visit: `http://your-ec2-public-ip:5000/`
+Visit: `http://your-ec2-public-ip:80/`
 
 ## Future Enhancements
 - Use **Gunicorn & Nginx** for better performance
@@ -163,10 +163,21 @@ docker build -t weather-app:v1 . --no-cache
 Once the image is build to run the image use 
 Use the below command to build the image:
 ```
-docker run -itd -p 5000:5000 weather-app:v1
+docker run -itd -p 80:80 weather-app:v1
 ```
+## Run this application on Helm
 
----
+python-api folder contains a helm chart for deploying this application
+on kubernetes clusters. Here weather is the release name and python-api
+is the chart name
+
+```
+ helm install weather python-api
+```
+To upgrade the helm chart  use
+```
+helm upgrade weather python-api
+```
 
 Feel free to contribute or provide feedback! 😊
 
