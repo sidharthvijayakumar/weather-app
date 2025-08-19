@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO,format="%(asctime)s;%(levelname)s;%(funcN
 logger = logging.getLogger(__name__)
 
 # Config
-API_KEY = "2e25eb832f01483d950b9b7b764adee4"
+API_KEY = ""#your api token
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 app = Flask(__name__)
