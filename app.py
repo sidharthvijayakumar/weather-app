@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,jsonify
 import requests
 import logging
 from requests.exceptions import ConnectTimeout, HTTPError
@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO,format="%(asctime)s;%(levelname)s;%(funcN
 logger = logging.getLogger(__name__)
 
 # Config
-API_KEY = ""
+API_KEY = "2e25eb832f01483d950b9b7b764adee4"
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 app = Flask(__name__)
@@ -55,5 +55,8 @@ def get_weather(city):
     response.raise_for_status()
     return response.json()
 
+@app.route("/health",methods=["GET"])
+def health():
+    return jsonify(status="Healthy")
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80,debug=True)
