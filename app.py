@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO,format="%(asctime)s;%(levelname)s;%(funcN
 logger = logging.getLogger(__name__)
 
 # Config
-API_KEY = ""#your api token
+API_KEY = "7f5079b840b6f6313f5ab949e0d20fca"#your api token
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 app = Flask(__name__)
@@ -54,6 +54,22 @@ def get_weather(city):
     response = requests.get(f"{BASE_URL}?q={city}&appid={API_KEY}")
     response.raise_for_status()
     return response.json()
+
+@app.route("/weather", methods=["GET"])
+def weather_json():
+    city = request.args.get("city", "pune")
+    try:
+        data = get_weather(city)
+        weather = {
+            "city": city,
+            "temperature": round(data["main"]["temp"]-273.15),
+            "description": data["weather"][0]["description"],
+            "humidity": data["main"]["humidity"],
+            "visibility": data["visibility"]/1000,
+        }
+        return jsonify(weather)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/health",methods=["GET"])
 def health():
