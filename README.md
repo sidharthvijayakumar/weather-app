@@ -154,6 +154,22 @@ Visit: `http://your-ec2-public-ip:80/`
 ## License
 This project is open-source and free to use.
 
+## Custom values for imagepull secrets
+
+We will need to create a secret for image pull back for our application as
+it would contain API key.
+
+Create this file inside the folder python-api
+
+```commandline
+imagePullSecretConfig:
+  auths:
+    https://index.docker.io/v1/:
+      username: <docker-username>
+      password: <docker-pat>
+      email: <email>
+```
+
 ## Build this application on Docker and install the helm chart 
 
 Here you will need to update the docker tag and few other variables like
