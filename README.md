@@ -154,38 +154,15 @@ Visit: `http://your-ec2-public-ip:80/`
 ## License
 This project is open-source and free to use.
 
-## Run this application on Docker
+## Build this application on Docker and install the helm chart 
 
-Use the below command to build the image:
+Here you will need to update the docker tag and few other variables like
+VERSION,APP_NAME,RELEASE_NAME,NAME_SPACE,DOCKER_BUILD once these are set 
+run the below command to build and deploy the application
 ```
-docker build -t weather-app:v1 . --no-cache
+bash automation.sh
 ```
-Once the image is build to run the image use 
-Use the below command to build the image:
-```
-docker run -itd -p 80:80 weather-app:v1
-```
-## Run this application on Helm
 
-python-api folder contains a helm chart for deploying this application
-on kubernetes clusters. Here weather is the release name and python-api
-is the chart name
-
-```
- helm install weather python-api
-```
-To upgrade the helm chart  use
-```
-helm upgrade weather python-api
-```
-To create image pull secret for kubernetes deployment(docker.io) use the below command
-```
-kubectl create secret docker-registry docker-io-secret --docker-server=https://index.docker.io/v1/ --docker-username=<docker-username> --docker-password=<docker-io-PAT> --docker-email=<email-id>
-```
-To create image pull secret for kubernetes deployment(ecr) use the below command
-```
-kubectl create secret docker-registry ecr-secret --docker-server=<account-id>.dkr.ecr.ap-south-1.amazonaws.com --docker-username=AWS --docker-password=$(aws ecr get-login-password --region <region>)
-```
 
 Feel free to contribute or provide feedback! 😊
 

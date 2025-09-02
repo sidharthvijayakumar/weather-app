@@ -8,5 +8,5 @@ COPY --from=builder /install /usr/local
 RUN pip install gunicorn
 WORKDIR /app
 COPY . .
-EXPOSE 80
-CMD ["gunicorn", "--bind", "0.0.0.0:80", "app:app"]
+EXPOSE 8080
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:app"]
